@@ -1,7 +1,7 @@
 
 
 def hoge():
-    """hoge
+    """hogegre
 
     Returns
     -------

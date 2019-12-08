@@ -30,13 +30,16 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -e .[test] 
+            make install_test_dependencies
+            make install_document_generation_depeendencies
+#            python3 -m venv venv
+#            . venv/bin/activate
+#            pip install -e .[test] 
 
       - save_cache:
           paths:
-            - ./venv
+            - ./.doc_venv
+            - ./.test_venv
           key: v1-dependencies-{{ checksum "setup.py" }}
 
       # run tests!
@@ -47,9 +50,11 @@ jobs:
       - run:
           name: run tests
           command: |
-            . venv/bin/activate
-            pytest
-
+            make test
+      - run:
+          name: generate documents
+          command: |
+            make doc
 #      - store_artifacts:
 #          path: test-reports
 #          destination: test-reports

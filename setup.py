@@ -21,4 +21,7 @@ setup(name='greentea',
           'dev': [
               'ipython',
               'python-language-server[all]'
-              ]})
+          ],
+          'doc': [
+              'sphinx',
+              'sphinx_rtd_theme']})

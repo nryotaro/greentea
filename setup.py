@@ -15,7 +15,10 @@ setup(name='greentea',
       install_requires=[
       ],
       extras_require={
+          'test': [
+              'pytest'
+          ],
           'dev': [
               'ipython',
-              'python-language-server[all]',
-              'pytest']})
+              'python-language-server[all]'
+              ]})

@@ -28,10 +28,6 @@ clean_test: ## Delete the unnecessary resources for running test.
 clean_doc: ## Delete the unnecessary resources for generating documents.
 	rm -rf $(DOC_BUILD_DIR) $(DOC_VENV) $(DOC_DIR)
 
-install_test_dependencies: $(TEST_VENV)bin/pytest ## Install test dependencies.
-
-install_document_generation_depeendencies: $(DOC_VENV)bin/sphinx-build ## Install dependencies for document generation.
-
 $(TEST_VENV)bin/pytest: $(PYENV_FILE)
 	cd $(BASE_DIR) && \
 	python -m venv $(TEST_VENV) && \

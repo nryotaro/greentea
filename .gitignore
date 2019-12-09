@@ -2,6 +2,8 @@
 .doc_build
 .doc_venv
 .test_venv
+.build_venv
+.build
 doc
 # Emacs
 *~

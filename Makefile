@@ -6,9 +6,18 @@ TEST_VENV ?= $(BASE_DIR).test_venv/
 DOC_BUILD_DIR ?= $(BASE_DIR).doc_build/
 DOC_VENV ?= $(BASE_DIR).doc_venv/
 DOC_DIR ?= $(BASE_DIR)doc/
+BUILD_VENV ?= $(BASE_DIR).build_venv/
+REPOSITORY := git@github.com:nryotaro/greentea.git
+BUILD_DIR := $(BASE_DIR).build
 
 help: ## Display this help.
 	@awk 'BEGIN {FS = ":.*##"; printf "\nUsage:\n  make \033[36m<target>\033[0m\n\nTargets:\n"} /^[a-zA-Z_-]+:.*?##/ { printf "  \033[36m%-10s\033[0m %s\n", $$1, $$2 }' $(MAKEFILE_LIST)
+
+publish: ## Clone codes in the revision tagged with 'TAG' to local, build them, then publish them to the pip index server.
+	cd $(BASE_DIR) && \
+	rm -rf $(BUILD_DIR) && \
+	git clone -b $(TAG) $(REPOSITORY) $(BUILD_DIR)
+
 
 test: $(TEST_VENV)bin/pytest ## Run tests.
 	cd $(BASE_DIR) && \

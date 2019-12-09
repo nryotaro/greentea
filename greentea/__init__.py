@@ -1,11 +1,1 @@
-
-
-def hoge():
-    """hogegre
-
-    Returns
-    -------
-    None
-
-    """
-    
+"""A microframework for abstraction."""

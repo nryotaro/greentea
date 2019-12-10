@@ -6,52 +6,6 @@ import datetime
 from dataclasses import dataclass, field
 
 
-class Tracer:
-    """Record information about a program's execution."""
-
-    def __init__(self,
-                 logger: logging.Logger,
-                 log_level: int = logging.DEBUG):
-        """Take a logger and the level for tracing."""
-        self.logger = logger
-        self.log_level = log_level
-
-    def trace(self, function: Callable):
-        """Provide a function decorator to trace the decorated function."""
-        @functools.wraps(function)
-        def wrapper(*args, **kwargs):
-            call_message = '%s(%s, %s)' % (function.__name__, args, kwargs)
-            self._log(call_message)
-            result = function(*args, **kwargs)
-            self._log('%s -> %s' % (call_message, result))
-            return result
-        return wrapper
-
-    def _log(self, message):
-        self.logger.log(self.log_level, message)
-
-    @classmethod
-    def create_tracer(
-            cls,
-            logger_name: str = 'trace',
-            format: str = '%(levelname)s:%(asctime)s:%(name)s:%(message)s',
-            level: int = logging.DEBUG):
-        """Create a tracer named with `logger_name`.
-
-        Returns
-        -------
-        tracer: Tracer
-
-        """
-        handler = logging.StreamHandler()
-        handler.setLevel(level)
-        handler.setFormatter(logging.Formatter(format))
-        logger = logging.getLogger(logger_name)
-        logger.setLevel(level)
-        logger.addHandler(handler)
-        return Tracer(logger, level)
-
-
 @dataclass
 class Invocation:
     """Record an invocation of a function."""
@@ -75,7 +29,7 @@ class Invocation:
         function = self.invocation[0]
         args = self.invocation[1]
         kwargs = self.invocation[2]
-        return '%s(%s, %s)' % (function, args, kwargs)
+        return '%s(%s, %s)' % (function.__name__, args, kwargs)
 
     def build_end_message(self, return_value: Any) -> str:
         """Create a message that this invocation has ended."""
@@ -110,3 +64,48 @@ class TraceLevel:
         """Record that the function has end."""
         message = invocation.build_end_message(return_value)
         logger.log(self.end_level, message)
+
+
+class Tracer:
+    """Record information about a program's execution."""
+
+    def __init__(self,
+                 logger: logging.Logger,
+                 trace_level: TraceLevel):
+        """Take a logger and a logging level."""
+        self.logger = logger
+        self.trace_level = trace_level
+
+    def trace(self, function: Callable):
+        """Provide a function decorator to trace the decorated function."""
+        @functools.wraps(function)
+        def wrapper(*args, **kwargs):
+            invocation = Invocation.create_from(function, args, kwargs)
+            self.trace_level.start(self.logger, invocation)
+            result = function(*args, **kwargs)
+            self.trace_level.end(self.logger, invocation, result)
+            return result
+        return wrapper
+
+    @classmethod
+    def create_tracer(
+            cls,
+            logger_name: str = 'trace',
+            format: str = '%(levelname)s:%(asctime)s:%(name)s:%(message)s',
+            level: int = logging.DEBUG,
+            start_level: int = logging.DEBUG,
+            end_level: int = logging.DEBUG):
+        """Create a tracer named with `logger_name`.
+
+        Returns
+        -------
+        tracer: Tracer
+
+        """
+        handler = logging.StreamHandler()
+        handler.setLevel(level)
+        handler.setFormatter(logging.Formatter(format))
+        logger = logging.getLogger(logger_name)
+        logger.setLevel(level)
+        logger.addHandler(handler)
+        return Tracer(logger, TraceLevel(start_level, end_level))

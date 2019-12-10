@@ -17,6 +17,11 @@ class TestTracer(TestCase):
         return_value = MagicMock()
         @self.tracer.trace
         def run(positional_argument, keyword=None):
+            """Ignore the arguments.
+
+            We use them to check wether a tracer can capture them.
+
+            """
             nonlocal return_value
             return return_value
 

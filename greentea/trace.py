@@ -91,10 +91,11 @@ class Tracer:
     def create_tracer(
             cls,
             logger_name: str = 'trace',
-            format: str = '%(levelname)s:%(asctime)s:%(name)s:%(message)s',
+            format_string: str
+            = '%(levelname)s:%(asctime)s:%(name)s:%(message)s',
             level: int = logging.DEBUG,
-            start_level: int = logging.DEBUG,
-            end_level: int = logging.DEBUG):
+            trace_level: TraceLevel
+            = TraceLevel(logging.DEBUG, logging.DEBUG)):
         """Create a tracer named with `logger_name`.
 
         Returns
@@ -104,8 +105,8 @@ class Tracer:
         """
         handler = logging.StreamHandler()
         handler.setLevel(level)
-        handler.setFormatter(logging.Formatter(format))
+        handler.setFormatter(logging.Formatter(format_string))
         logger = logging.getLogger(logger_name)
         logger.setLevel(level)
         logger.addHandler(handler)
-        return Tracer(logger, TraceLevel(start_level, end_level))
+        return Tracer(logger, trace_level)

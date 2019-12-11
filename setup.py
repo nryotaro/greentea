@@ -12,7 +12,7 @@ setup(name='greentea',
       author_email='nakamura.ryotaro.kzs@gmail.com',
       license='MIT License',
       classifiers=['Programming Language :: Python :: 3.8'],
-      packages=find_packages(),
+      packages=find_packages(exclude='tests',),
       install_requires=[
       ],
       extras_require={

@@ -2,6 +2,7 @@
 import abc
 import argparse
 from .log import LogConfiguration
+from .service import BaseService
 
 
 class BaseFactory(metaclass=abc.ABCMeta):
@@ -12,16 +13,12 @@ class BaseFactory(metaclass=abc.ABCMeta):
         self.namespace = namespace
 
     @abc.abstractmethod
-    def create_service(self):
+    def create_service(self) -> BaseService:
         """Create a service."""
 
     @abc.abstractmethod
     def create_arguments(self) -> dict:
-        """Create the arguments for the runner."""
-
-    @abc.abstractproperty
-    def base_logger_name(self) -> str:
-        """Return the base logger name."""
+        """Create the arguments for the service."""
 
     @abc.abstractmethod
     def create_log_configuration(self) -> LogConfiguration:

@@ -8,4 +8,4 @@ class BaseService(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def run(self, **kwargs) -> Any:
-        """Execution."""
+        """Execute the use case."""

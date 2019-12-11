@@ -18,7 +18,8 @@ publish: $(BUILD_DIR)setup.py $(BUILD_VENV)bin/twine  ## Clone codes in the revi
 	git clean -fd && \
 	git checkout $(TAG) && \
 	source $(BUILD_VENV)bin/activate && \
-	python setup.py sdist bdist_wheel
+	python setup.py sdist bdist_wheel && \
+	python -m twine upload dist/*
 
 test: $(TEST_VENV)bin/pytest ## Run tests.
 	cd $(BASE_DIR) && \

@@ -16,6 +16,9 @@ help: ## Display this help.
 publish: $(BUILD_DIR)setup.py $(BUILD_VENV)bin/twine  ## Clone codes in the revision tagged with 'TAG' to local, build them, then publish them to the pip index server.
 	cd $(BUILD_DIR) && \
 	git clean -fd && \
+	rm -rf greentea.egg-info dist build && \
+	git checkout master && \
+	git pull && \
 	git checkout $(TAG) && \
 	source $(BUILD_VENV)bin/activate && \
 	python setup.py sdist bdist_wheel && \

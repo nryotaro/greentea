@@ -7,5 +7,6 @@ A microframework for abstraction.
 ## Documentations
 
 - [2.0.0](https://nryotaro.dev/greentea/2.0.0/)
+- [3.0.0](https://nryotaro.dev/greentea/3.0.0/)
 
 

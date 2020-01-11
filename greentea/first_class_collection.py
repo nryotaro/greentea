@@ -6,23 +6,44 @@ from .typevar import T, S
 
 
 class FirstClassFileContextManagerProvider(metaclass=abc.ABCMeta):
-    """Provide a context manager."""
+    """Provide a context manager for the content of :py:attr:`filename`.
+
+    Attributes
+    ----------
+    filename: str
+        The path to a file which :py:meth:`transform` transforms
+        each line to an item emitted by :py:`__call__`.
+
+    """
 
     def __init__(self, filename: str):
-        """
+        """Take the path to a file to read.
+
+        Parameters
+        ----------
+        filename: str
+
         """
         self.filename = filename
 
     @contextlib.contextmanager
-    def __call__(self):
-        """
-        """
+    def __call__(self) -> Generator[T, None, None]:
+        """Emit an item transformed t from a line of :py:attr:`filename`."""
         with open(self.filename) as stream:
             yield (self.transform(item.strip()) for item in stream)
 
     @abc.abstractmethod
-    def transform(self, item):
-        """
+    def transform(self, item: str) -> T:
+        """Transform each line of :py:attr:`filename`.
+
+        Transform each line of :py:attr:`filename` to an item
+        emitted by :py:meth:`__call__`.
+
+        Parameters
+        ----------
+        item: str
+            A line of :py:attr:`filename`.
+
         """
 
 

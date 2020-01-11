@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 
 setup(name='greentea',
-      version="3.0.0",
+      version="3.0.2",
       description=(
           'A microframework for abstraction.'),
       python_requires='>=3.8.0',

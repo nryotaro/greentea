@@ -12,7 +12,7 @@ class FirstClassFileContextManagerProvider(metaclass=abc.ABCMeta):
     ----------
     filename: str
         The path to a file which :py:meth:`transform` transforms
-        each line to an item emitted by :py:`__call__`.
+        each line to an item emitted by :py:meth:`__call__`.
 
     """
 

@@ -52,3 +52,8 @@ class TestText(TestCase):
                 lambda x: [Text(t) for t in x.split()])
 
         self.assertEqual(result, Texts([Text('ab'), Text('bc'), Text('cd')]))
+
+    def test_join(self):
+        """join"""
+        expected = Text('.').join(Texts([Text('a'), Text('b')]))
+        self.assertEqual(expected, Text('a.b'))

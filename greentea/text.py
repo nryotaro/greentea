@@ -83,7 +83,21 @@ class Text:
         pattern = re.compile(f"{os.linesep}+")
         return Text(re.sub(pattern, os.linesep, self.text))
 
+    def join(self, texts):
+        """Return a :py:class:`Text` which is the concatenation of `texts`.
 
+        The separator between items is the the text providing this method.
+
+        Parameters
+        ----------
+        texts: Texts
+
+        Returns
+        -------
+        Text
+
+        """
+        return Text(self.text.join((txt.text for txt in texts)))
 
 
 @dataclass

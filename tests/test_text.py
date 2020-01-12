@@ -1,5 +1,6 @@
 from unittest import TestCase
-from greentea.text import Text
+import os
+from greentea.text import Text, Texts
 
 
 class TestText(TestCase):
@@ -17,3 +18,30 @@ class TestText(TestCase):
     def test_is_empty_false(self):
         """Return true if the length of the text is more than one."""
         self.assertFalse(Text('a').is_empty())
+
+    def test_end_with_linesep(self):
+        """ends_with_linesep.
+
+        Append a line separator if not exists.
+
+        """
+        target = Text('a')
+        result = target.end_with_linesep()
+        self.assertEqual(result, Text(f'a{os.linesep}'))
+
+    def test_end_with_linesep_skip(self):
+        """ends_with_linesep.
+
+        Return itself if the `text` ends with os.linesep.
+
+        """
+        target = Text(f'a{os.linesep}')
+        result = target.end_with_linesep()
+        self.assertEqual(result, target)
+
+    def test_tokenize(self):
+        """tokenize."""
+        result = Text('ab bc cd').tokenize(
+                lambda x: [Text(t) for t in x.split()])
+
+        self.assertEqual(result, Texts([Text('ab'), Text('bc'), Text('cd')]))

@@ -87,7 +87,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#module-greentea.first_class_collection">greentea.first_class_collection module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-greentea.log">greentea.log module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-greentea.primitive">greentea.primitive module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#greentea-text-module">greentea.text module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-greentea.text">greentea.text module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-greentea.trace">greentea.trace module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-greentea.typevar">greentea.typevar module</a></li>
 </ul>
@@ -291,8 +291,108 @@ emitted by <code class="xref py py-meth docutils literal notranslate"><span clas
 </dd></dl>
 
 </div>
-<div class="section" id="greentea-text-module">
-<h2>greentea.text module<a class="headerlink" href="#greentea-text-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-greentea.text">
+<span id="greentea-text-module"></span><h2>greentea.text module<a class="headerlink" href="#module-greentea.text" title="Permalink to this headline">¶</a></h2>
+<p>Implement a wrapper for <cite>str</cite>.</p>
+<dl class="class">
+<dt id="greentea.text.Text">
+<em class="property">class </em><code class="sig-prename descclassname">greentea.text.</code><code class="sig-name descname">Text</code><span class="sig-paren">(</span><em class="sig-param">text: str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/greentea/text.html#Text"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#greentea.text.Text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Represent a text.</p>
+<dl class="attribute">
+<dt id="greentea.text.Text.text">
+<code class="sig-name descname">text</code><a class="headerlink" href="#greentea.text.Text.text" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="greentea.text.Text.concat">
+<code class="sig-name descname">concat</code><span class="sig-paren">(</span><em class="sig-param">text</em>, <em class="sig-param">separator='. '</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/greentea/text.html#Text.concat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#greentea.text.Text.concat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Concatenation of itself and <cite>text</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>text</strong> (<a class="reference internal" href="#greentea.text.Text" title="greentea.text.Text"><em>Text</em></a>) – a text to be concatenated.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="greentea.text.Text.empty">
+<code class="sig-name descname">empty</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/greentea/text.html#Text.empty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#greentea.text.Text.empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an emtpy <a class="reference internal" href="#greentea.text.Text" title="greentea.text.Text"><code class="xref py py-class docutils literal notranslate"><span class="pre">Text</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="greentea.text.Text.end_with_linesep">
+<code class="sig-name descname">end_with_linesep</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/greentea/text.html#Text.end_with_linesep"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#greentea.text.Text.end_with_linesep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append a line separator if <cite>self</cite> does not end with it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#greentea.text.Text" title="greentea.text.Text">Text</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="greentea.text.Text.is_empty">
+<code class="sig-name descname">is_empty</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; bool<a class="reference internal" href="_modules/greentea/text.html#Text.is_empty"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#greentea.text.Text.is_empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return <cite>True</cite> iff empty.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="greentea.text.Text.remove_consec_linesep">
+<code class="sig-name descname">remove_consec_linesep</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/greentea/text.html#Text.remove_consec_linesep"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#greentea.text.Text.remove_consec_linesep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the consecutive line separators to a line separator.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="greentea.text.Text.strip">
+<code class="sig-name descname">strip</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/greentea/text.html#Text.strip"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#greentea.text.Text.strip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the Stripped text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#greentea.text.Text" title="greentea.text.Text">Text</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="greentea.text.Text.tokenize">
+<code class="sig-name descname">tokenize</code><span class="sig-paren">(</span><em class="sig-param">tokenizer</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/greentea/text.html#Text.tokenize"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#greentea.text.Text.tokenize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tokenize <cite>self</cite> to Texts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>tokenizer</strong> (<em>function</em>) – Take a <cite>str</cite>, and tokenize it
+to a sequence of <a class="reference internal" href="#greentea.text.Text" title="greentea.text.Text"><code class="xref py py-class docutils literal notranslate"><span class="pre">Text</span></code></a>.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#greentea.text.Texts" title="greentea.text.Texts">Texts</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="greentea.text.Texts">
+<em class="property">class </em><code class="sig-prename descclassname">greentea.text.</code><code class="sig-name descname">Texts</code><span class="sig-paren">(</span><em class="sig-param">texts: Sequence[greentea.text.Text]</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/greentea/text.html#Texts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#greentea.text.Texts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">collections.abc.Sequence</span></code></p>
+<p>A sequence of <a class="reference internal" href="#greentea.text.Text" title="greentea.text.Text"><code class="xref py py-class docutils literal notranslate"><span class="pre">Text</span></code></a>.</p>
+</dd></dl>
+
 </div>
 <div class="section" id="module-greentea.trace">
 <span id="greentea-trace-module"></span><h2>greentea.trace module<a class="headerlink" href="#module-greentea.trace" title="Permalink to this headline">¶</a></h2>
@@ -390,6 +490,18 @@ emitted by <code class="xref py py-meth docutils literal notranslate"><span clas
 <div class="section" id="module-greentea.typevar">
 <span id="greentea-typevar-module"></span><h2>greentea.typevar module<a class="headerlink" href="#module-greentea.typevar" title="Permalink to this headline">¶</a></h2>
 <p>Provide typevars.</p>
+<dl class="data">
+<dt id="greentea.typevar.S">
+<code class="sig-prename descclassname">greentea.typevar.</code><code class="sig-name descname">S</code><em class="property"> = ~S</em><a class="headerlink" href="#greentea.typevar.S" title="Permalink to this definition">¶</a></dt>
+<dd><p>S</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="greentea.typevar.T">
+<code class="sig-prename descclassname">greentea.typevar.</code><code class="sig-name descname">T</code><em class="property"> = ~T</em><a class="headerlink" href="#greentea.typevar.T" title="Permalink to this definition">¶</a></dt>
+<dd><p>T</p>
+</dd></dl>
+
 </div>
 </div>
 

@@ -1,6 +1,7 @@
 """Implement a wrapper for `str`."""
 import os
 from dataclasses import dataclass
+import re
 from typing import Sequence
 import collections.abc as collections
 
@@ -76,6 +77,13 @@ class Text:
 
         """
         return Texts(tokenizer(self.text))
+
+    def remove_consec_linesep(self):
+        """Convert the consecutive line separators to a line separator."""
+        pattern = re.compile(f"{os.linesep}+")
+        return Text(re.sub(pattern, os.linesep, self.text))
+
+
 
 
 @dataclass

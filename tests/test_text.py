@@ -39,6 +39,13 @@ class TestText(TestCase):
         result = target.end_with_linesep()
         self.assertEqual(result, target)
 
+    def test_remove_consec_linesep(self):
+        """Convert the consecutive line separators to a line separator."""
+        target = Text(f'a{os.linesep}{os.linesep}{os.linesep}b')
+
+        actual = target.remove_consec_linesep()
+        self.assertEqual(actual, Text(f'a{os.linesep}b'))
+
     def test_tokenize(self):
         """tokenize."""
         result = Text('ab bc cd').tokenize(

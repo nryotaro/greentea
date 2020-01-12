@@ -57,3 +57,29 @@ class TestText(TestCase):
         """join"""
         expected = Text('.').join(Texts([Text('a'), Text('b')]))
         self.assertEqual(expected, Text('a.b'))
+
+    def test_contains_only_whitespaces(self):
+        """contains_only_whitespaces.
+
+        Return True if text has only whitespace characters.
+        """
+        spaces = Text(' ')
+
+        self.assertTrue(spaces.contains_only_whitespaces())
+
+    def test_contains_only_whitespaces_empty(self):
+        """contains_only_whitespaces.
+
+        Return True if text is empty.
+        """
+        spaces = Text('')
+
+        self.assertTrue(spaces.contains_only_whitespaces())
+
+
+class TestTexts(TestCase):
+
+    def test_remove_whitespaces(self):
+        target = Texts([Text('a'), Text(' ')])
+        actual = target.remove_whitespaces()
+        self.assertEqual(actual, Texts([Text('a')]))

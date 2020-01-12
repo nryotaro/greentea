@@ -99,6 +99,10 @@ class Text:
         """
         return Text(self.text.join((txt.text for txt in texts)))
 
+    def contains_only_whitespaces(self) -> bool:
+        """Return `True` iff :py:attr:`text` contains only whitespace chars."""
+        return re.match(r'^\s*$', self.text)
+
 
 @dataclass
 class Texts(collections.Sequence):
@@ -113,3 +117,17 @@ class Texts(collections.Sequence):
     def __getitem__(self, s):
         """Access a subset of: py: attr: `texts`."""
         return self.texts.__getitem__(s)
+
+    def remove_whitespaces(self):
+        """Return the :py:class:`Texts` with no whitespace characters.
+
+        Returns
+        -------
+        Texts
+        :py:attr:`texts` gets list.
+
+        """
+        return Texts([text
+                      for text in self.texts
+                      if not text.contains_only_whitespaces()])
+

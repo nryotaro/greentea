@@ -76,7 +76,10 @@ class FirstClassSequence(metaclass=abc.ABCMeta):
 
     def apply_function(self, function: Callable[[T], S]) \
             -> Generator[S, None, None]:
-        """
-        """
-        return (function(item) for item in self.sequence)
+        """Apply `function` to the items, returning the result."""
+        return (function(item) for item in self)
+
+    def append(self, other, sequence_type=list):
+        """Return a new sequence."""
+        return self.__class__(self.sequence + other.sequence)
 

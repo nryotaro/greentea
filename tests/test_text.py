@@ -83,3 +83,8 @@ class TestTexts(TestCase):
         target = Texts([Text('a'), Text(' ')])
         actual = target.remove_whitespaces()
         self.assertEqual(actual, Texts([Text('a')]))
+
+    def test_getitem_multi(self):
+        target = Texts([Text('a'), Text(' ')])
+        actual = target[1:]
+        self.assertEqual(actual, Texts([Text(' ')]))

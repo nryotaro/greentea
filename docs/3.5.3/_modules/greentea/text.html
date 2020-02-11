@@ -262,7 +262,10 @@
 
     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Access a subset of: py: attr: `texts`.&quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">texts</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">found</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">texts</span><span class="o">.</span><span class="fm">__getitem__</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">found</span><span class="p">,</span> <span class="n">Text</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">found</span>
+        <span class="k">return</span> <span class="n">Texts</span><span class="p">(</span><span class="n">found</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Texts.remove_whitespaces"><a class="viewcode-back" href="../../greentea.html#greentea.text.Texts.remove_whitespaces">[docs]</a>    <span class="k">def</span> <span class="nf">remove_whitespaces</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the :py:class:`Texts` with no whitespace characters.</span>

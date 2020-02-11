@@ -116,7 +116,10 @@ class Texts(collections.Sequence):
 
     def __getitem__(self, s):
         """Access a subset of: py: attr: `texts`."""
-        return self.texts.__getitem__(s)
+        found = self.texts.__getitem__(s)
+        if isinstance(found, Text):
+            return found
+        return Texts(found)
 
     def remove_whitespaces(self):
         """Return the :py:class:`Texts` with no whitespace characters.

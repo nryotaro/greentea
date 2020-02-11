@@ -48,8 +48,7 @@ class FirstClassFileContextManagerProvider(metaclass=abc.ABCMeta):
 
 
 class FirstClassSequence(metaclass=abc.ABCMeta):
-    """
-    """
+    """An abstract class representing a sequence."""
 
     @abc.abstractproperty
     def sequence(self) -> Sequence[T]:
@@ -57,7 +56,10 @@ class FirstClassSequence(metaclass=abc.ABCMeta):
 
     def __getitem__(self, s):
         """Access the specified items."""
-        return self.sequence.__getitem__(s)
+        found = self.sequence.__getitem__(s)
+        if isinstance(found, type(self.sequence)):
+            return self.__class__(found)
+        return found
 
     def __len__(self):
         """Return the size of :py:meth:`sequence`."""

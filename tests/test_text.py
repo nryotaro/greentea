@@ -91,5 +91,5 @@ class TestTexts(TestCase):
         self.assertEqual(actual, Texts([Text(' ')]))
 
     def test_raw_texts(self):
-        actual = self.target.get_raw_texts()
+        actual = self.target.raw_texts()
         self.assertEqual(actual, ['a', ' '])

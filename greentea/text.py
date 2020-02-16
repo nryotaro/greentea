@@ -137,10 +137,3 @@ class Texts(collections.Sequence):
         return Texts([text
                       for text in self.texts
                       if not text.contains_only_whitespaces()])
-
-    def get_raw_texts(self) -> List[str]:
-        """Return the raw texts."""
-        return [text.text for text in self.texts]
-        
-
-

@@ -2,7 +2,7 @@
 import os
 from dataclasses import dataclass
 import re
-from typing import Sequence
+from typing import Sequence, List
 import collections.abc as collections
 
 
@@ -121,6 +121,10 @@ class Texts(collections.Sequence):
             return found
         return Texts(found)
 
+    def raw_texts(self) -> List[str]:
+        """Return the texts."""
+        return [text.text for text in self.texts]
+
     def remove_whitespaces(self):
         """Return the :py:class:`Texts` with no whitespace characters.
 
@@ -133,4 +137,10 @@ class Texts(collections.Sequence):
         return Texts([text
                       for text in self.texts
                       if not text.contains_only_whitespaces()])
+
+    def get_raw_texts(self) -> List[str]:
+        """Return the raw texts."""
+        return [text.text for text in self.texts]
+        
+
 

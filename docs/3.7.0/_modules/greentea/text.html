@@ -148,7 +148,7 @@
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">dataclasses</span> <span class="kn">import</span> <span class="n">dataclass</span>
 <span class="kn">import</span> <span class="nn">re</span>
-<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">List</span>
 <span class="kn">import</span> <span class="nn">collections.abc</span> <span class="k">as</span> <span class="nn">collections</span>
 
 
@@ -267,6 +267,10 @@
             <span class="k">return</span> <span class="n">found</span>
         <span class="k">return</span> <span class="n">Texts</span><span class="p">(</span><span class="n">found</span><span class="p">)</span>
 
+<div class="viewcode-block" id="Texts.raw_texts"><a class="viewcode-back" href="../../greentea.html#greentea.text.Texts.raw_texts">[docs]</a>    <span class="k">def</span> <span class="nf">raw_texts</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Return the texts.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">text</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">texts</span><span class="p">]</span></div>
+
 <div class="viewcode-block" id="Texts.remove_whitespaces"><a class="viewcode-back" href="../../greentea.html#greentea.text.Texts.remove_whitespaces">[docs]</a>    <span class="k">def</span> <span class="nf">remove_whitespaces</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the :py:class:`Texts` with no whitespace characters.</span>
 
@@ -278,7 +282,13 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">Texts</span><span class="p">([</span><span class="n">text</span>
                       <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">texts</span>
-                      <span class="k">if</span> <span class="ow">not</span> <span class="n">text</span><span class="o">.</span><span class="n">contains_only_whitespaces</span><span class="p">()])</span></div></div>
+                      <span class="k">if</span> <span class="ow">not</span> <span class="n">text</span><span class="o">.</span><span class="n">contains_only_whitespaces</span><span class="p">()])</span></div>
+
+<div class="viewcode-block" id="Texts.get_raw_texts"><a class="viewcode-back" href="../../greentea.html#greentea.text.Texts.get_raw_texts">[docs]</a>    <span class="k">def</span> <span class="nf">get_raw_texts</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="sd">&quot;&quot;&quot;Return the raw texts.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">text</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">texts</span><span class="p">]</span></div></div>
+        
+
 
 </pre></div>
 

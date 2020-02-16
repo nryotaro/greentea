@@ -79,12 +79,17 @@ class TestText(TestCase):
 
 class TestTexts(TestCase):
 
+    def setUp(self):
+        self.target = Texts([Text('a'), Text(' ')])
+
     def test_remove_whitespaces(self):
-        target = Texts([Text('a'), Text(' ')])
-        actual = target.remove_whitespaces()
+        actual = self.target.remove_whitespaces()
         self.assertEqual(actual, Texts([Text('a')]))
 
     def test_getitem_multi(self):
-        target = Texts([Text('a'), Text(' ')])
-        actual = target[1:]
+        actual = self.target[1:]
         self.assertEqual(actual, Texts([Text(' ')]))
+
+    def test_raw_texts(self):
+        actual = self.target.get_raw_texts()
+        self.assertEqual(actual, ['a', ' '])
